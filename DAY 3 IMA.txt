@@ -9,6 +9,7 @@
 -- DQL Tasks
 
 -- 1) How many orders were received for products with a category_id = 2
+Answer: SELECT COUNT(*) FROM orders WHERE category_id = 2
 Answer: 23
 
 -- 2) How many orders were received with a category_id of either 2, 4, or 5
