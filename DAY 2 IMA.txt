@@ -1,0 +1,58 @@
+--
+-- SQL Query
+--
+
+
+-- using the DDL in the file final_exercise_ddl.sql, perfom the following - 
+
+
+-- DQL Tasks
+
+-- 1) How many orders were received for products with a category_id = 2
+Answer: 23
+
+-- 2) How many orders were received with a category_id of either 2, 4, or 5
+Answer: SELECT COUNT(id) FROM orders WHERE category_id IN (2,4,5)
+Result: 66
+
+-- 3) How many order are there with a price over £35.00 
+Answer: SELECT COUNT(id) FROM orders WHERE price>35
+Result: 71
+
+-- 4) How many orders are there where the customer has a date of birth before 1st January 1980 and want to receive the newsletter
+Answer: SELECT COUNT(id) FROM orders WHERE date_of_birth<1980-01-01 AND newsletter>0
+Result:35
+
+-- 5)  How many customers named Davenport placed orders?
+Answer: SELECT COUNT(id) FROM orders WHERE customer_surname LIKE '%Davenport%' OR customer_firstname LIKE '%Davenport%'
+Result:7
+
+-- 6) Which customer with a firstname starting with 'Br', had the most orders
+Answer: SELECT* FROM orders WHERE customer_firstname LIKE 'Br%'
+Result: Brenda, Brendan, Brielle, Bradley
+
+-- 7) List all orders with products from category 3 by order of price, highest first.
+Answer: SELECT* FROM orders WHERE category_id=3 ORDER BY 'price' DESC
+
+-- 8) Select the following fields from all orders (trans_date, price, promo_code) renaming the colum (field) headings ('Transaction Date', 'Price' & 'Promotion Code')
+Answer: SELECT 'trans_date' as 'Transaction Date', 'price' as 'Price','promo_code' as 'Promotion Code' FROM orders
+
+-- 9) Select the following fields (customer_surname, customer_firstname, county) from all orders, 
+with customer names in a single field named 'Customer Name' and in the format <Surname>, <Firstname>, 
+with surname capitalised.  The county field is to be renamed 'County'.
+
+Answer: SELECT CONCAT(UPPER(`customer_surname`), ' ', `customer_firstname`) AS 'Customer Name', `county` AS 'County' FROM `orders`; 
+
+-- 10)	Select the average price, minimum price & maximum price for each category.
+Answer: SELECT 'category_id',AVG(price),MIN(price),MAX(price) FROM orders GROUP BY('category_id')
+
+-- 11) 	Select the category_name (labelled 'Category'), number of sales (labelled 'Total Orders') & total sales (labelled 'Total Sales') for each category.
+Answer: SELECT category_name AS 'Category', count(orders.id) as "Total order", sum(price) as "Total sales" from orders join categories on (orders.category_id=categories.id) group by category_name;
+
+-- 12) 	List all orders with the following fields (with the labls given) orders.trans_date('Transaction Date'), 
+categories.category_name('Category'), orders.customer_surname('Surname'), orders.customer_firstname('Firstname'), 
+orders.price('Order Price'), categories.category_name('Category'), promotions.discount('Discounted by') 
+Answer:
+SELECT `trans_date` AS `Transaction Date`,`category_name` AS`Category`,`customer_surname`AS`Surname`,`customer_firstname`AS`Firstname`,`price`AS`Order price`,`category_name`AS`Category`,`discount`AS`Discounted` FROM orders
+LEFT JOIN categories ON orders.category_id=categories.id
+LEFT JOIN promotions ON orders.promo_code=promotions.code
