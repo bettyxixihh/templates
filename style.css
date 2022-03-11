@@ -41,6 +41,24 @@ header{
   padding-bottom: 50px;
 }
 
+/*Gallery section*/
+
+.gallery{
+  max-width: 800px;
+  margin: 0 auto ;
+  padding: 0;
+  color: black(72, 61, 139);
+  font-size: 20px;
+}
+
+
+.gallery img{
+  border-radius: 100%;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+}
+
 footer{
   background-color: deepskyblue;
   text-align: center;
@@ -63,20 +81,5 @@ footer a:hover{
 }
 
 
-/*Gallery section*/
-
-.gallery{
-  max-width: 800px;
-  margin: 0 auto ;
-  padding: 0;
-  color: rgb(72, 61, 139);
-  font-size: 20px;
-}
 
 
-.gallery img{
-  border-radius: 100%;
-  overflow: hidden;
-  width: 150px;
-  height: 150px;
-}
